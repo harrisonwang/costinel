@@ -1,4 +1,4 @@
-# VPS Watcher (VPS库存监控工具)
+# VPS Watcher
 
 一个基于 Node.js 和 Puppeteer 的 VPS 库存监控工具，支持自定义 DSL 语法来描述监控任务。
 

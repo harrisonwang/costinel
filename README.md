@@ -1,5 +1,7 @@
 # VPS Watcher
 
+[English](README.md) | [中文](README_zh.md)
+
 A VPS stock monitoring tool based on Node.js and Puppeteer, supporting custom DSL syntax to describe monitoring tasks.
 
 ## Currently Supported Providers
