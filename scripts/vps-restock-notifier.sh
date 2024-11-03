@@ -1,8 +1,8 @@
 #!/bin/bash
 
-LOCK_FILE="/tmp/vps-watcher.lock"
-PROJECT_DIR="/opt/vps-watcher"
-LOG_FILE="$PROJECT_DIR/logs/vps-watcher.log"
+LOCK_FILE="/tmp/vps-restock-notifier.lock"
+PROJECT_DIR="/opt/vps-restock-notifier"
+LOG_FILE="$PROJECT_DIR/logs/vps-restock-notifier.log"
 
 # 检查是否已经在运行
 if [ -f "$LOCK_FILE" ]; then

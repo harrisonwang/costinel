@@ -6,7 +6,7 @@ import puppeteer from 'puppeteer';
 import { PRODUCTS, SITE_CONFIGS } from './config.js';
 import telegramService from './services/telegram.js';
 
-class Watcher {
+class RestockNotifier {
     constructor(tests) {
         this.tests = tests;
     }
@@ -105,7 +105,7 @@ async function main() {
         const tokens = lexer.tokenize();
         const parser = new Parser(tokens);
         const ast = parser.parse();
-        const runner = new Watcher(ast);
+        const runner = new RestockNotifier(ast);
         await runner.run();
     } catch (error) {
         console.error('执行出错:', error);

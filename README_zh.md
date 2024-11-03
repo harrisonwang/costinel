@@ -1,4 +1,4 @@
-# VPS Watcher
+# VPS 补货通知工具
 
 一个基于 Node.js 和 Puppeteer 的 VPS 库存监控工具，支持自定义 DSL 语法来描述监控任务。
 
@@ -28,8 +28,8 @@
 1. 克隆仓库
 
 ```bash
-git clone https://github.com/harrisonwang/vps-watcher.git
-cd vps-watcher
+git clone https://github.com/harrisonwang/vps-restock-notifier.git
+cd vps-restock-notifier
 ```
 
 2. 安装依赖
@@ -131,7 +131,7 @@ export const SITE_CONFIGS = {
 - `src/index.js`: 主程序
 - `src/config.js`: 网站配置
 - `src/services/telegram.js`: Telegram 通知服务
-- `scripts/vps-watcher.sh`: 执行脚本
+- `scripts/vps-restock-notifier.sh`: 执行脚本
 
 ## 定时任务设置
 
@@ -139,7 +139,7 @@ export const SITE_CONFIGS = {
 
 ```bash
 # 每5分钟检查一次
-*/5 * * * * /path/to/vps-watcher/scripts/vps-watcher.sh
+*/5 * * * * /opt/vps-restock-notifier/scripts/vps-restock-notifier.sh
 ```
 
 ## 常见问题

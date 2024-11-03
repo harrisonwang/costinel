@@ -1,15 +1,15 @@
 {
-  "name": "vps-watcher",
+  "name": "vps-restock-notifier",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node src/index.js"
   },
-  "keywords": [],
+  "keywords": ["vps", "bandwagonhost", "dmit"],
   "author": "小王爷",
   "license": "MIT",
-  "description": "vps 监控工具",
+  "description": "vps 补货通知工具",
   "dependencies": {
     "puppeteer": "^23.6.1",
     "node-telegram-bot-api": "^0.64.0",

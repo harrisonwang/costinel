@@ -1,8 +1,8 @@
-# VPS Watcher
+# VPS Restock Notifier
 
 [English](README.md) | [中文](README_zh.md)
 
-A VPS stock monitoring tool based on Node.js and Puppeteer, supporting custom DSL syntax to describe monitoring tasks.
+A VPS restock notification tool based on Node.js and Puppeteer, supporting custom DSL syntax to describe monitoring tasks.
 
 ## Currently Supported Providers
 
@@ -30,8 +30,8 @@ A VPS stock monitoring tool based on Node.js and Puppeteer, supporting custom DS
 1. Clone Repository
 
 ```bash
-git clone https://github.com/harrisonwang/vps-watcher.git
-cd vps-watcher
+git clone https://github.com/harrisonwang/vps-restock-notifier.git
+cd vps-restock-notifier
 ```
 
 2. Install Dependencies
@@ -133,7 +133,7 @@ Project Structure:
 - `src/index.js`: Main program
 - `src/config.js`: Website configurations
 - `src/services/telegram.js`: Telegram notification service
-- `scripts/vps-watcher.sh`: Execution script
+- `scripts/vps-restock-notifier.sh`: Execution script
 
 ## Crontab Setup
 
@@ -141,7 +141,7 @@ Add to crontab for automatic checking:
 
 ```bash
 # Check every 5 minutes
-*/5 * * * * /path/to/vps-watcher/scripts/vps-watcher.sh
+*/5 * * * * /opt/vps-restock-notifier/scripts/vps-restock-notifier.sh
 ```
 
 ## FAQ
