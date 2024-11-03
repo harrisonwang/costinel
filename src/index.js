@@ -1,18 +1,9 @@
+#!/usr/bin/env node
+
 import Lexer from './lexer.js';
 import Parser from './parser.js';
 import puppeteer from 'puppeteer';
-
-// 添加网站配置
-const SITE_CONFIGS = {
-    'bandwagonhost.com': {
-        stockSelector: '#order-web20cart .errorbox',
-        outOfStockText: 'Out of Stock'
-    },
-    'dmit.io': {
-        stockSelector: '#order-boxes h1',
-        outOfStockText: 'Out of Stock'
-    }
-};
+import { PRODUCTS, SITE_CONFIGS } from './config.js';
 
 class Watcher {
     constructor(tests) {
@@ -20,7 +11,11 @@ class Watcher {
     }
 
     async run() {
-        const browser = await puppeteer.launch();
+        console.log(`\n[${new Date().toLocaleString()}] 开始检查库存...`);
+        
+        const browser = await puppeteer.launch({
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        });
         const page = await browser.newPage();
 
         await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36');
@@ -75,27 +70,37 @@ class Watcher {
             }
         }
 
+        console.log(`[${new Date().toLocaleString()}] 库存检查完成\n${'='.repeat(50)}`);
+        
         await browser.close();
     }
 }
 
-// const sourceCode = `
-// test "Check Stock" {
-//     open "https://bandwagonhost.com/cart.php?a=add&pid=145"
-//     assert "stock" contains "Out of Stock"
-// }
-// `;
-
-const sourceCode = `
-test "Check Stock" {
-    open "https://www.dmit.io/cart.php?a=add&pid=183"
+// 动态生成测试代码
+const generateTestCode = () => {
+    return PRODUCTS.map(product => `
+test "Check ${product.name} Stock" {
+    open "${product.url}"
     assert "stock" contains "Out of Stock"
 }
-`;
+`).join('\n');
+};
 
-const lexer = new Lexer(sourceCode);
-const tokens = lexer.tokenize();
-const parser = new Parser(tokens);
-const ast = parser.parse();
-const runner = new Watcher(ast);
-runner.run();
+const sourceCode = generateTestCode();
+
+// 修改最后的执行部分，添加错误处理
+async function main() {
+    try {
+        const lexer = new Lexer(sourceCode);
+        const tokens = lexer.tokenize();
+        const parser = new Parser(tokens);
+        const ast = parser.parse();
+        const runner = new Watcher(ast);
+        await runner.run();
+    } catch (error) {
+        console.error('执行出错:', error);
+        process.exit(1);
+    }
+}
+
+main();
