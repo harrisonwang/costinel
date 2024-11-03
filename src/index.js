@@ -4,6 +4,7 @@ import Lexer from './lexer.js';
 import Parser from './parser.js';
 import puppeteer from 'puppeteer';
 import { PRODUCTS, SITE_CONFIGS } from './config.js';
+import telegramService from './services/telegram.js';
 
 class Watcher {
     constructor(tests) {
@@ -58,7 +59,16 @@ class Watcher {
                         // 使用配置的文本进行断言
                         const found = elementText.includes(config.outOfStockText);
                         if (!found) {
+                            const message = `
+🎉 <b>${domain}</b> 有库存啦！
+
+🔗 产品链接: ${page.url()}
+⏰ 检测时间: ${new Date().toLocaleString()}
+
+快去抢购吧！
+`;
                             console.log(`${domain} 可能有库存`);
+                            await telegramService.sendMessage(message);
                         } else {
                             console.log(`${domain} 暂无库存`);
                         }

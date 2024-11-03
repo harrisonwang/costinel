@@ -11,6 +11,8 @@
   "license": "MIT",
   "description": "vps 监控工具",
   "dependencies": {
-    "puppeteer": "^23.6.1"
+    "puppeteer": "^23.6.1",
+    "node-telegram-bot-api": "^0.64.0",
+    "dotenv": "^16.4.1"
   }
 }
