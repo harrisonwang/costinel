@@ -16,11 +16,14 @@ A VPS stock monitoring tool based on Node.js and Puppeteer, supporting custom DS
 - Support for multiple provider configurations
 - Custom selectors and text matching
 - Wait time and error handling support
+- Telegram notifications support
+- Environment variables configuration
 
 ## Requirements
 
-- Node.js >= 14
+- Node.js >= 20
 - npm or yarn
+- Telegram Bot Token (for notifications)
 
 ## Quick Start
 
@@ -37,7 +40,15 @@ cd vps-watcher
 npm install
 ```
 
-3. Write Monitoring Rules
+3. Configure Environment Variables
+
+```bash
+cp .env.example .env
+# Edit .env file with your Telegram bot token and chat ID
+vim .env
+```
+
+4. Write Monitoring Rules
 
 ```dsl
 test "Check Bandwagonhost Stock" {
@@ -46,11 +57,36 @@ test "Check Bandwagonhost Stock" {
 }
 ```
 
-1. Start Monitoring
+5. Start Monitoring
 
 ```bash
 npm start
 ```
+
+## Environment Variables
+
+Create a `.env` file in the project root:
+
+```bash
+# Telegram Configuration
+TELEGRAM_BOT_TOKEN=your_bot_token_here
+TELEGRAM_CHAT_ID=your_chat_id_here
+
+# Monitor Configuration
+CHECK_INTERVAL=300  # check interval in seconds
+```
+
+## Telegram Bot Setup
+
+1. Create a new bot:
+   - Contact @BotFather on Telegram
+   - Use the `/newbot` command
+   - Save the bot token
+
+2. Get your chat ID:
+   - Send a message to your bot
+   - Visit: `https://api.telegram.org/bot<YourBOTToken>/getUpdates`
+   - Find your `chat.id` in the response
 
 ## DSL Syntax Guide
 
@@ -73,11 +109,10 @@ test "Check Bandwagonhost Stock" {
 
 ## Website Configuration
 
-Current website configurations are located in `src/index.js` under `SITE_CONFIGS`:
+Current website configurations are located in `src/config.js`:
 
 ```javascript
-
-const SITE_CONFIGS = {
+export const SITE_CONFIGS = {
     'bandwagonhost.com': {
         stockSelector: '#order-web20cart .errorbox',
         outOfStockText: 'Out of Stock'
@@ -95,7 +130,19 @@ Project Structure:
 
 - `src/lexer.js`: DSL lexical analyzer
 - `src/parser.js`: DSL parser
-- `src/index.js`: Main program and website configurations
+- `src/index.js`: Main program
+- `src/config.js`: Website configurations
+- `src/services/telegram.js`: Telegram notification service
+- `scripts/vps-watcher.sh`: Execution script
+
+## Crontab Setup
+
+Add to crontab for automatic checking:
+
+```bash
+# Check every 5 minutes
+*/5 * * * * /path/to/vps-watcher/scripts/vps-watcher.sh
+```
 
 ## FAQ
 
@@ -104,7 +151,13 @@ Project Structure:
    - Configure corresponding selector and matching text
 
 2. **How to adjust check interval?**
-   - Currently fixed at 3 seconds, can be modified in `src/index.js`
+   - Modify CHECK_INTERVAL in .env file
+   - Update crontab schedule if using cron
+
+3. **Telegram notifications not working?**
+   - Verify bot token and chat ID in .env
+   - Check bot permissions
+   - Review application logs
 
 ## Contributing
 
