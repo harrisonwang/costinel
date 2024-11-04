@@ -12,7 +12,7 @@ class RestockNotifier {
     }
 
     async run() {
-        console.log(`\n[${new Date().toLocaleString()}] 开始检查库存...`);
+        console.log(`\n[${getChinaTime()}] 开始检查库存...`);
         
         const browser = await puppeteer.launch({
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
@@ -63,7 +63,7 @@ class RestockNotifier {
 🎉 <b>${domain}</b> 有库存啦！
 
 🔗 产品链接: ${page.url()}
-⏰ 检测时间: ${new Date().toLocaleString()}
+⏰ 检测时间: ${getChinaTime()}
 
 快去抢购吧！
 `;
@@ -80,7 +80,7 @@ class RestockNotifier {
             }
         }
 
-        console.log(`[${new Date().toLocaleString()}] 库存检查完成\n${'='.repeat(50)}`);
+        console.log(`[${getChinaTime()}] 库存检查完成\n${'='.repeat(50)}`);
         
         await browser.close();
     }
@@ -114,3 +114,11 @@ async function main() {
 }
 
 main();
+
+// 添加一个获取东八区时间的辅助函数
+function getChinaTime() {
+    return new Date().toLocaleString('zh-CN', {
+        timeZone: 'Asia/Shanghai',
+        hour12: false
+    });
+}
