@@ -1,7 +1,7 @@
 #!/bin/bash
 
 LOCK_FILE="/tmp/vps-restock-notifier.lock"
-PROJECT_DIR="/opt/vps-restock-notifier"
+PROJECT_DIR="/opt/projects/vps-restock-notifier"
 LOG_FILE="$PROJECT_DIR/logs/vps-restock-notifier.log"
 
 # 检查是否已经在运行

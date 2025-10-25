@@ -65,7 +65,7 @@ class Parser {
         while (this.pos < this.tokens.length) {
             tests.push(this.parseTest());
         }
-        console.debug('ast', JSON.stringify(tests, null, 2));
+        // console.debug('ast', JSON.stringify(tests, null, 2));
         return tests;
     }
 }
