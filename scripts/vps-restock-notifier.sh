@@ -37,5 +37,5 @@ log_time() {
 # 执行主程序
 cd "$PROJECT_DIR"
 echo "[$(log_time)] 开始执行检查" >> "$LOG_FILE"
-/root/.nvm/versions/node/v20.17.0/bin/node src/index.js >> "$LOG_FILE" 2>&1
+/root/.nvm/versions/node/v22.20.0/bin/node src/index.js >> "$LOG_FILE" 2>&1
 echo "[$(log_time)] 检查完成" >> "$LOG_FILE"

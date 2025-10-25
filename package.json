@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js"
   },
-  "keywords": ["vps", "bandwagonhost", "dmit"],
+  "keywords": ["vps", "bandwagonhost", "dmit", "vmiss"],
   "author": "小王爷",
   "license": "MIT",
   "description": "vps 补货通知工具",
