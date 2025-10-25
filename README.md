@@ -5,6 +5,7 @@
 ## 当前支持的供应商
 
 - Bandwagonhost
+- VMISS
 - DMIT
 
 ## 功能特点
@@ -113,6 +114,10 @@ test "check bandwagonhost stock" {
 export const SITE_CONFIGS = {
     'bandwagonhost.com': {
         stockSelector: '#order-web20cart .errorbox',
+        outOfStockText: 'Out of Stock'
+    },
+    'app.vmiss.com': {
+        stockSelector: 'h2',
         outOfStockText: 'Out of Stock'
     },
     'dmit.io': {
