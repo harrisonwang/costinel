@@ -58,7 +58,8 @@ class RestockNotifier {
 
                         // 使用配置的文本进行断言
                         const found = elementText.includes(config.outOfStockText);
-                        if (!found) {
+                        const notFoundElement = elementText.includes('未找到元素');
+                        if (!found && !notFoundElement) {
                             const message = `
 🎉 <b>${domain}</b> 有库存啦！
 

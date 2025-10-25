@@ -1,115 +1,113 @@
-# VPS Restock Notifier
+# VPS 补货通知工具
 
-[English](README.md) | [中文](README_zh.md)
+一个基于 Node.js 和 Puppeteer 的 VPS 库存监控工具，支持自定义 DSL 语法来描述监控任务。
 
-A VPS restock notification tool based on Node.js and Puppeteer, supporting custom DSL syntax to describe monitoring tasks.
-
-## Currently Supported Providers
+## 当前支持的供应商
 
 - Bandwagonhost
-- DMIT.io
+- DMIT
 
-## Features
+## 功能特点
 
-- Real browser simulation based on Puppeteer
-- Custom DSL syntax for writing monitoring rules
-- Support for multiple provider configurations
-- Custom selectors and text matching
-- Wait time and error handling support
-- Telegram notifications support
-- Environment variables configuration
+- 基于 Puppeteer 实现真实浏览器模拟
+- 自定义 DSL 语法编写监控规则
+- 支持多个供应商配置
+- 支持自定义选择器和匹配文本
+- 支持等待时间和错误处理
+- Telegram 通知支持
+- 环境变量配置
 
-## Requirements
+## 系统要求
 
 - Node.js >= 20
-- npm or yarn
-- Telegram Bot Token (for notifications)
+- npm 或 yarn
+- Telegram Bot Token（用于通知）
 
-## Quick Start
+## 快速开始
 
-1. Clone Repository
+1. 克隆仓库
 
 ```bash
 git clone https://github.com/harrisonwang/vps-restock-notifier.git
 cd vps-restock-notifier
 ```
 
-2. Install Dependencies
+2. 安装依赖
 
 ```bash
 npm install
 ```
 
-3. Configure Environment Variables
+3. 配置环境变量
 
 ```bash
 cp .env.example .env
-# Edit .env file with your Telegram bot token and chat ID
+# 编辑 .env 文件，填入您的 Telegram bot token 和 chat ID
 vim .env
 ```
 
-4. Write Monitoring Rules
+4. 编写监控规则
 
 ```dsl
-test "Check Bandwagonhost Stock" {
+test "check bandwagonhost stock" {
     open "https://bandwagonhost.com/cart.php?a=add&pid=145"
     assert "stock" contains "Out of Stock"
 }
 ```
 
-5. Start Monitoring
+5. 启动监控
 
 ```bash
 npm start
 ```
 
-## Environment Variables
+## 环境变量配置
 
-Create a `.env` file in the project root:
+在项目根目录创建 `.env` 文件：
 
 ```bash
-# Telegram Configuration
-TELEGRAM_BOT_TOKEN=your_bot_token_here
-TELEGRAM_CHAT_ID=your_chat_id_here
+# Telegram 配置
+TELEGRAM_BOT_TOKEN=你的bot_token
+TELEGRAM_CHAT_ID=你的chat_id
 
-# Monitor Configuration
-CHECK_INTERVAL=300  # check interval in seconds
+# 监控配置
+CHECK_INTERVAL=300  # 检查间隔（秒）
 ```
 
-## Telegram Bot Setup
+## Telegram 机器人设置
 
-1. Create a new bot:
-   - Contact @BotFather on Telegram
-   - Use the `/newbot` command
-   - Save the bot token
+1. 创建新机器人：
+   - 在 Telegram 中联系 @BotFather
+   - 使用 `/newbot` 命令
+   - 保存获得的 bot token
 
-2. Get your chat ID:
-   - Send a message to your bot
-   - Visit: `https://api.telegram.org/bot<YourBOTToken>/getUpdates`
-   - Find your `chat.id` in the response
+2. 获取您的 chat ID：
+   - 向机器人发送消息
+   - 访问：`https://api.telegram.org/bot<YourBOTToken>/getUpdates`
+   - 在响应中找到您的 `chat.id`
 
-## DSL Syntax Guide
+## DSL 语法说明
 
-Supported Commands:
+支持的命令：
 
-- `test`: Define a test case
-- `open`: Open specified URL
-- `click`: Click specified element
-- `input`: Input text
-- `assert`: Assertion check
+- `test`: 定义测试用例
+- `open`: 打开指定 URL
+- `click`: 点击指定元素
+- `input`: 输入文本
+- `assert`: 断言检查
 
-Example:
+示例：
 
 ```dsl
-test "Check Bandwagonhost Stock" {
+test "check bandwagonhost stock" {
     open "https://bandwagonhost.com/cart.php?a=add&pid=145"
     assert "stock" contains "Out of Stock"
 }
 ```
 
-## Website Configuration
+## 网站配置说明
 
-Current website configurations are located in `src/config.js`:
+目前支持的网站配置位于 `src/config.js`：
 
 ```javascript
 export const SITE_CONFIGS = {
@@ -124,49 +122,49 @@ export const SITE_CONFIGS = {
 };
 ```
 
-## Development
+## 开发相关
 
-Project Structure:
+项目结构：
 
-- `src/lexer.js`: DSL lexical analyzer
-- `src/parser.js`: DSL parser
-- `src/index.js`: Main program
-- `src/config.js`: Website configurations
-- `src/services/telegram.js`: Telegram notification service
-- `scripts/vps-restock-notifier.sh`: Execution script
+- `src/lexer.js`: DSL 词法分析器
+- `src/parser.js`: DSL 语法分析器
+- `src/index.js`: 主程序
+- `src/config.js`: 网站配置
+- `src/services/telegram.js`: Telegram 通知服务
+- `scripts/vps-restock-notifier.sh`: 执行脚本
 
-## Crontab Setup
+## 定时任务设置
 
-Add to crontab for automatic checking:
+添加到 crontab 实现自动检查：
 
 ```bash
-# Check every 5 minutes
+# 每5分钟检查一次
 */5 * * * * /opt/vps-restock-notifier/scripts/vps-restock-notifier.sh
 ```
 
-## FAQ
+## 常见问题
 
-1. **How to add a new provider?**
-   - Add new configuration in `SITE_CONFIGS`
-   - Configure corresponding selector and matching text
+1. **如何添加新的供应商？**
+   - 在 `SITE_CONFIGS` 中添加新的配置
+   - 配置对应的选择器和匹配文本
 
-2. **How to adjust check interval?**
-   - Modify CHECK_INTERVAL in .env file
-   - Update crontab schedule if using cron
+2. **如何调整检查间隔？**
+   - 修改 .env 文件中的 CHECK_INTERVAL
+   - 如果使用 cron，更新 crontab 调度时间
 
-3. **Telegram notifications not working?**
-   - Verify bot token and chat ID in .env
-   - Check bot permissions
-   - Review application logs
+3. **Telegram 通知不工作？**
+   - 验证 .env 中的 bot token 和 chat ID
+   - 检查机器人权限
+   - 查看应用日志
 
-## Contributing
+## 贡献
 
-Pull Requests and Issues are welcome!
+欢迎提交 Pull Request 或 Issue！
 
-## Author
+## 作者
 
-Harrison Wang
+小王爷
 
-## License
+## 许可证
 
 MIT License

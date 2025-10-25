@@ -34,7 +34,7 @@ class Lexer {
             }
             if (!matched) throw new Error(`Unexpected token: ${input[0]}`);
         }
-        console.log('this.tokens', this.tokens);
+        console.debug('this.tokens', this.tokens);
         return this.tokens;
     }
 }
