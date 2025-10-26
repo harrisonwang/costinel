@@ -70,9 +70,6 @@ npm start
 # Telegram 配置
 TELEGRAM_BOT_TOKEN=你的bot_token
 TELEGRAM_CHAT_ID=你的chat_id
-
-# 监控配置
-CHECK_INTERVAL=300  # 检查间隔（秒）
 ```
 
 ## Telegram 机器人设置
@@ -154,8 +151,7 @@ export const SITE_CONFIGS = {
    - 配置对应的选择器和匹配文本
 
 2. **如何调整检查间隔？**
-   - 修改 .env 文件中的 CHECK_INTERVAL
-   - 如果使用 cron，更新 crontab 调度时间
+   - 更新 crontab 调度时间
 
 3. **Telegram 通知不工作？**
    - 验证 .env 中的 bot token 和 chat ID
