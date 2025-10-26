@@ -188,7 +188,7 @@ class RestockNotifier {
 
         // 打印表格底部
         this.printTableBottom(columnWidths);
-        console.log(`\n[${getChinaTime()}] 库存检查完成\n${'='.repeat(50)}`);
+        console.log(`\n[${getChinaTime()}] 库存检查完成\n${'='.repeat(130)}`);
         
         await browser.close();
     }
