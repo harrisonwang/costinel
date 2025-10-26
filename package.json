@@ -1,5 +1,5 @@
 {
-  "name": "vps-restock-notifier",
+  "name": "costinel",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
@@ -9,7 +9,7 @@
   "keywords": ["vps", "bandwagonhost", "dmit", "vmiss"],
   "author": "小王爷",
   "license": "MIT",
-  "description": "vps 补货通知工具",
+  "description": "Costinel: VPS 补货监控哨兵",
   "dependencies": {
     "puppeteer": "^23.6.1",
     "node-telegram-bot-api": "^0.64.0",

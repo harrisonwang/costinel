@@ -29,8 +29,8 @@
 1. 克隆仓库
 
 ```bash
-git clone https://github.com/harrisonwang/vps-restock-notifier.git
-cd vps-restock-notifier
+git clone https://github.com/harrisonwang/costinel.git
+cd costinel
 ```
 
 2. 安装依赖
@@ -136,7 +136,7 @@ export const SITE_CONFIGS = {
 - `src/index.js`: 主程序
 - `src/config.js`: 网站配置
 - `src/services/telegram.js`: Telegram 通知服务
-- `scripts/vps-restock-notifier.sh`: 执行脚本
+- `scripts/costinel.sh`: 执行脚本
 
 ## 定时任务设置
 
@@ -144,7 +144,7 @@ export const SITE_CONFIGS = {
 
 ```bash
 # 每5分钟检查一次
-*/5 * * * * /opt/vps-restock-notifier/scripts/vps-restock-notifier.sh
+*/5 * * * * /opt/costinel/scripts/costinel.sh
 ```
 
 ## 常见问题
