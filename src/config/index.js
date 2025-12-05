@@ -18,9 +18,17 @@ export const config = {
     
     // 浏览器配置
     browser: {
-        headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
+        // puppeteer-real-browser 配置
+        headless: false,                    // 使用有头模式(通过 Xvfb)
+        turnstile: true,                   // 自动处理 Cloudflare Turnstile
+        executablePath: process.env.CHROME_PATH || '/usr/bin/google-chrome',
+        disableXvfb: false,                // 启用 Xvfb 虚拟显示
+        customConfig: {},
+        connectOption: {
+            defaultViewport: null
+        },
+        ignoreAllFlags: false,
+        userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'
     },
     
     // 检查间隔（毫秒）

@@ -27,12 +27,12 @@ export const PRODUCTS = [
         site: 'bandwagonhost.com',
         description: 'BandwagonHost MegaBox Pro (2C/2G/40G/2000G/2.5Gbps/DC1)'
     },
-    {
-        name: 'Amsterdam-EUNL',
-        url: 'https://bandwagonhost.com/cart.php?a=add&pid=136',
-        site: 'bandwagonhost.com',
-        description: 'BandwagonHost Amsterdam EUNL Promo ($39/年 联通9929优化)'
-    },
+    // {
+    //     name: 'Amsterdam-EUNL',
+    //     url: 'https://bandwagonhost.com/cart.php?a=add&pid=136',
+    //     site: 'bandwagonhost.com',
+    //     description: 'BandwagonHost Amsterdam EUNL Promo ($39/年 联通9929优化)'
+    // },
     {
         name: 'LAX.Pro.WEE',
         url: 'https://www.dmit.io/cart.php?a=add&pid=183',

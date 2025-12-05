@@ -30,7 +30,7 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
-    "puppeteer": "^23.6.1",
+    "puppeteer-real-browser": "^1.4.4",
     "node-telegram-bot-api": "^0.64.0",
     "dotenv": "^16.4.1"
   }

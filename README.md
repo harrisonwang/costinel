@@ -28,6 +28,12 @@ cd costinel
 ### 2. 安装依赖
 
 ```bash
+# 安装 xvfb
+apt install -y xvfb
+# 安装 chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+apt install -y ./google-chrome-stable_current_amd64.deb
+# 安装依赖
 npm i
 ```
 
@@ -39,11 +45,6 @@ npm i
 # Telegram 配置
 TELEGRAM_BOT_TOKEN=你的bot_token
 TELEGRAM_CHAT_ID=你的chat_id
-
-# 可选配置
-CHECK_INTERVAL=300000    # 检查间隔（毫秒）
-LOG_LEVEL=info          # 日志级别
-DEBUG=false             # 调试模式
 ```
 
 ### 4. 启动监控
