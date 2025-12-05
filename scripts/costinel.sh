@@ -8,7 +8,7 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="${PROJECT_DIR_OVERRIDE:-$(cd "$SCRIPT_DIR/.." && pwd)}"
 LOG_FILE="/var/log/costinel/app.log"
 LOCK_FILE="/run/costinel.lock"
-NODE_BIN="${NODE_BIN:-/root/.nvm/versions/node/v22.20.0/bin/node}"
+NODE_BIN="${NODE_BIN:-/root/.nvm/versions/node/v24.11.1/bin/node}"
 TIMEOUT_DURATION="25m"
 
 # ============ 锁文件（防并发）============

@@ -2,7 +2,6 @@
  * 站点配置
  * 定义不同 VPS 商家的库存检测规则
  */
-
 export const SITE_CONFIGS = {
     'bandwagonhost.com': {
         stockSelector: '#order-web20cart .errorbox',
